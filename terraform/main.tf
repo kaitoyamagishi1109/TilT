@@ -4,5 +4,5 @@ provider "aws" {
 
 variable "msa_role" {
     description = "msa role"
-    default = "arn:aws:iam::589021901386:role/msarole"
+    default = "arn:aws:iam::703622364183:role/msarole"
 }
