@@ -8,7 +8,12 @@ resource "aws_s3_bucket" "b1" {
   }
 
   logging {
-    target_bucket = "${aws_s3_bucket.b1.id}"
+    target_bucket = "${aws_s3_bucket.log.id}"
     target_prefix = "log/"
   }
+}
+
+resource "aws_s3_bucket" "log" {
+  bucket = "htl-intern-log"
+  acl    = "log-delivery-write"
 }
