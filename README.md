@@ -16,7 +16,7 @@ Copyright 2019, Kaito Yamagishi, all rights reserved
   - Great UI, easy to use, but only shows minutes
   - A display of only time can be frustrating for some users: we want location of the vehicles
 
-#### **Solution (Test Checklist) **
+#### **Solution (Test Checklist)**
 
 - [ ] An web page/application that provides a simple, intuitive view of the T's current location
 - [ ] Start from Green Line B, might develop for more lines
@@ -30,3 +30,7 @@ Copyright 2019, Kaito Yamagishi, all rights reserved
 
 - Script will be written in Python, will get data from the MBTA V3 API
 - Frontend will consist of simple HTML with elements of ReactJS for real time refreshing
+
+#### **UI Brainstorm**
+
+![alt text](https://i.ibb.co/DWD7twN/2019-08-08-11-39-33.png)
