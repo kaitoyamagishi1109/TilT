@@ -17,3 +17,9 @@ resource "aws_s3_bucket" "log" {
   bucket = "htl-intern-log"
   acl    = "log-delivery-write"
 }
+
+resource "aws_s3_bucket_object" "file_upload1" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "index.html"
+  source = "../html/index.html"
+}
