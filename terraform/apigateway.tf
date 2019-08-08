@@ -51,7 +51,7 @@ resource "aws_api_gateway_deployment" "condition_v2" {
   ]
 
   rest_api_id = "${aws_api_gateway_rest_api.condition_v2.id}"
-  stage_name  = "${var.env}"
+  stage_name  = "prod"
 }
 
 output "base_url" {
