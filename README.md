@@ -1,3 +1,5 @@
+Copyright 2019, Kaito Yamagishi, all rights reserved
+
 ## TilT Documentation
 
 #### **Problem Statement**
