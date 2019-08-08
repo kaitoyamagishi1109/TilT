@@ -3,12 +3,8 @@
 #imports
 import requests
 
-#API requests
-request = requests.get("https://api-v3.mbta.com/stops/70148")
-#print(request.text)
-
 #Dictionary of stop names corresponding to their stop IDs based on direction of trip
-stopids = {
+stops = {
     #0 is heading to Boston College, 1 is heading to Park Street
     "Boston College" :              {0 : 70107, 1 : 70106},
     "South Street" :                {0 : 70111, 1 : 70110},
@@ -32,25 +28,77 @@ stopids = {
     "Copley" :                      {0 : 70155, 1 : 70154},
     "Arlington" :                   {0 : 70157, 1 : 70156},
     "Boylston" :                    {0 : 70159, 1 : 70158},
-    "Park Street" :                 {0 : 71199, 1 : 70196}
+    "Park Street" :                 {0 : 70196, 1 : 71199}
 }
 
-print(stopids["Boston University East"])
+results = {
+    "attributes": {
+      "bearing": 135,
+      "current_status": "STOPPED_AT",
+      "current_stop_sequence": 10,
+      "direction_id": 1,
+      "label": "3663-3869",
+      "latitude": 42.339420318603516,
+      "longitude": -71.1572036743164,
+      "updated_at": "2019-08-07T21:23:40-04:00"
+    },
+    "id": "G-10092",
+    "links": {
+      "self": "/vehicles/G-10092"
+    },
+    "relationships": {
+      "route": {
+        "data": {
+          "id": "Green-B",
+          "type": "route"
+        }
+      },
+      "stop": {
+        "data": {
+          "id": "70110",
+          "type": "stop"
+        }
+      },
+      "trip": {
+        "data": {
+          "id": "ADDED-1565185569",
+          "type": "trip"
+        }
+      }
+    },
+    "type": "vehicle"
+}
 
-for key, value in stopids.items():
-    #print(value[0])
+#Define example stopids: An array with 5 stops
+#User defined station +- 2 stations: This comes in from the frontend
+stopids = [ {0 : 70139, 1 : 70138},
+            {0 : 70143, 1 : 70142},
+            {0 : 70145, 1 : 70144},
+            {0 : 70147, 1 : 70146},
+            {0 : 70149, 1 : 70148},]
 
-#Markus Jarderot, https://stackoverflow.com/questions/323750/how-to-access-previous-next-element-while-for-looping/22030004
-def neighborhood(iterable):
-    iterator = iter(iterable)
-    prev_item = None
-    current_item = next(iterator)
-    for next_item in iterator:
-        yield (prev_item, current_item, next_item)
-        prev_item = current_item
-        current_item = next_item
-    yield (prev_item, current_item, None)
+def id_vehicles(stopids):
+    #Requests predictions for the next 3 trains approaching stop from PARK STREET to BC
+    predictionsPtoB = requests.get("https://api-v3.mbta.com/predictions?page%5Blimit%5D=3&sort=arrival_time&filter%5Bstop%5D=" + str(stopids[2][0]))
+    #equests predictions for the next 3 trains approaching stop from BC to PARK STREET
+    predictionsBtoP = requests.get("https://api-v3.mbta.com/predictions?page%5Blimit%5D=3&sort=arrival_time&filter%5Bstop%5D=" + str(stopids[2][1]))
 
+    #Take the train ids for these 6, Put them in an array
 
-for prev,item,next in neighborhood(stopids.items()):
-    #print (prev, item, next)
+    #Calculate mins until the next train (If 0, show next)
+
+    return trainids, mins
+
+def status_vehicles(trainids):
+    #initialize return element (the dict)
+    trainstatus = {}
+    #attach for loop here (to iterate through train IDs)
+    vehicles = requests.get("https://api-v3.mbta.com/vehicles/" + trainids[i])
+    vehiclestatus = (results["attributes"]["current_status"])
+    stopid = (results["relationships"]["stop"]["data"]["id"])
+    trainstatus.update({vehiclestatus:int(stopid)})
+    return trainstatus
+
+if __name__ == '__main__':
+        trainids, mins = id_vehicles(stopids)
+        trainstatus = status_vehicles(trainids)
