@@ -23,3 +23,8 @@ resource "aws_s3_bucket_object" "file_upload1" {
   key    = "index.html"
   source = "../html/index.html"
 }
+resource "aws_s3_bucket_object" "file_upload2" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "error.html"
+  source = "../html/error.html"
+}
