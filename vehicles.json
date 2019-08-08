@@ -1,0 +1,653 @@
+{
+    "data": [
+      {
+        "attributes": {
+          "bearing": 315,
+          "current_status": "IN_TRANSIT_TO",
+          "current_stop_sequence": 150,
+          "direction_id": 0,
+          "label": "3867-3713",
+          "latitude": 42.34941864013672,
+          "longitude": -71.10140228271484,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:21-04:00"
+        },
+        "id": "G-10255",
+        "links": {
+          "self": "/vehicles/G-10255"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70147",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "ADDED-1565185521",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 30,
+          "current_status": "IN_TRANSIT_TO",
+          "current_stop_sequence": 50,
+          "direction_id": 0,
+          "label": "3642-3802",
+          "latitude": 42.35620880126953,
+          "longitude": -71.06256866455078,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:27-04:00"
+        },
+        "id": "G-10043",
+        "links": {
+          "self": "/vehicles/G-10043"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70196",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "40852860-RedSox-22:30-NewtonHighlandsKenmore",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 135,
+          "current_status": "INCOMING_AT",
+          "current_stop_sequence": 160,
+          "direction_id": 1,
+          "label": "3843",
+          "latitude": 42.349830627441406,
+          "longitude": -71.10533142089844,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:44-04:00"
+        },
+        "id": "G-10260",
+        "links": {
+          "self": "/vehicles/G-10260"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70146",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "ADDED-1565185541",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 240,
+          "current_status": "INCOMING_AT",
+          "current_stop_sequence": 110,
+          "direction_id": 0,
+          "label": "3805-3695",
+          "latitude": 42.35163879394531,
+          "longitude": -71.07171630859375,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:30-04:00"
+        },
+        "id": "G-10233",
+        "links": {
+          "self": "/vehicles/G-10233"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70155",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "40852826-RedSox-22:30-NewtonHighlandsKenmore",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 225,
+          "current_status": "INCOMING_AT",
+          "current_stop_sequence": 270,
+          "direction_id": 0,
+          "label": "3686-3872",
+          "latitude": 42.34278106689453,
+          "longitude": -71.14364624023438,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:55-04:00"
+        },
+        "id": "G-10134",
+        "links": {
+          "self": "/vehicles/G-10134"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70117",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "40852822-RedSox-22:30-NewtonHighlandsKenmore",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 240,
+          "current_status": "INCOMING_AT",
+          "current_stop_sequence": 120,
+          "direction_id": 0,
+          "label": "3887-3644",
+          "latitude": 42.34996032714844,
+          "longitude": -71.07791900634766,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:15-04:00"
+        },
+        "id": "G-10069",
+        "links": {
+          "self": "/vehicles/G-10069"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70153",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "40852827-RedSox-22:30-NewtonHighlandsKenmore",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 75,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 310,
+          "direction_id": 0,
+          "label": "3850",
+          "latitude": 42.340999603271484,
+          "longitude": -71.16741943359375,
+          "speed": null,
+          "updated_at": "2019-08-07T21:15:43-04:00"
+        },
+        "id": "G-10261",
+        "links": {
+          "self": "/vehicles/G-10261"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70107",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "ADDED-1565185556",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 225,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 260,
+          "direction_id": 0,
+          "label": "3600",
+          "latitude": 42.34413146972656,
+          "longitude": -71.14261627197266,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:48-04:00"
+        },
+        "id": "G-10240",
+        "links": {
+          "self": "/vehicles/G-10240"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70121",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "ADDED-1565185493",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 75,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 310,
+          "direction_id": 0,
+          "label": "3820-3709",
+          "latitude": 42.340999603271484,
+          "longitude": -71.16741943359375,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:49-04:00"
+        },
+        "id": "G-10219",
+        "links": {
+          "self": "/vehicles/G-10219"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70107",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "ADDED-1565185571",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 135,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 140,
+          "direction_id": 1,
+          "label": "3692-3889",
+          "latitude": 42.35078811645508,
+          "longitude": -71.11334228515625,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:47-04:00"
+        },
+        "id": "G-10163",
+        "links": {
+          "self": "/vehicles/G-10163"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70142",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "ADDED-1565185548",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 315,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 240,
+          "direction_id": 0,
+          "label": "3606-3875",
+          "latitude": 42.34844970703125,
+          "longitude": -71.13712310791016,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:50-04:00"
+        },
+        "id": "G-10095",
+        "links": {
+          "self": "/vehicles/G-10095"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70127",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "40852821-RedSox-22:30-NewtonHighlandsKenmore",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 0,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 60,
+          "direction_id": 1,
+          "label": "3675",
+          "latitude": 42.348201751708984,
+          "longitude": -71.1405029296875,
+          "speed": null,
+          "updated_at": "2019-08-07T21:22:00-04:00"
+        },
+        "id": "G-10093",
+        "links": {
+          "self": "/vehicles/G-10093"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70124",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "ADDED-1565185553",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 135,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 10,
+          "direction_id": 1,
+          "label": "3663-3869",
+          "latitude": 42.339420318603516,
+          "longitude": -71.1572036743164,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:40-04:00"
+        },
+        "id": "G-10092",
+        "links": {
+          "self": "/vehicles/G-10092"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70110",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "ADDED-1565185569",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 105,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 560,
+          "direction_id": 1,
+          "label": "3603-3853",
+          "latitude": 42.34794998168945,
+          "longitude": -71.08686065673828,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:23-04:00"
+        },
+        "id": "G-10058",
+        "links": {
+          "self": "/vehicles/G-10058"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70152",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "ADDED-1565185529",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 30,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 600,
+          "direction_id": 1,
+          "label": "3673-3830",
+          "latitude": 42.35554122924805,
+          "longitude": -71.06321716308594,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:06-04:00"
+        },
+        "id": "G-10056",
+        "links": {
+          "self": "/vehicles/G-10056"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "71199",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "ADDED-1565185519",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 75,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 310,
+          "direction_id": 0,
+          "label": "3629-3812",
+          "latitude": 42.340999603271484,
+          "longitude": -71.16741943359375,
+          "speed": null,
+          "updated_at": "2019-08-07T21:21:12-04:00"
+        },
+        "id": "G-10055",
+        "links": {
+          "self": "/vehicles/G-10055"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70107",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "40852824-RedSox-22:30-NewtonHighlandsKenmore",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      },
+      {
+        "attributes": {
+          "bearing": 315,
+          "current_status": "STOPPED_AT",
+          "current_stop_sequence": 160,
+          "direction_id": 0,
+          "label": "3848-3643",
+          "latitude": 42.3501091003418,
+          "longitude": -71.10722351074219,
+          "speed": null,
+          "updated_at": "2019-08-07T21:23:36-04:00"
+        },
+        "id": "G-10025",
+        "links": {
+          "self": "/vehicles/G-10025"
+        },
+        "relationships": {
+          "route": {
+            "data": {
+              "id": "Green-B",
+              "type": "route"
+            }
+          },
+          "stop": {
+            "data": {
+              "id": "70145",
+              "type": "stop"
+            }
+          },
+          "trip": {
+            "data": {
+              "id": "40852829-RedSox-22:30-NewtonHighlandsKenmore",
+              "type": "trip"
+            }
+          }
+        },
+        "type": "vehicle"
+      }
+    ],
+    "jsonapi": {
+      "version": "1.0"
+    }
+  }
