@@ -5,7 +5,7 @@ data "archive_file" "lambda_function" {
 }
 
 resource "aws_lambda_function" "api" {
-  function_name = "Train api"
+  function_name = "TrainApi"
 
   filename         = "${data.archive_file.lambda_function.output_path}"
   source_code_hash = "${data.archive_file.lambda_function.output_base64sha256}"
