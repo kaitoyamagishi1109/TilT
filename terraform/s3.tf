@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "b1" {
   }
 }
 
-esource "aws_s3_bucket_policy" "b1" {
+resource "aws_s3_bucket_policy" "b1" {
   bucket = "${aws_s3_bucket.b1.id}"
 
   policy = <<POLICY
