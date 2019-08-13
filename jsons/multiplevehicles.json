@@ -1,0 +1,83 @@
+{
+  "data": [
+    {
+      "attributes": {
+        "bearing": 135,
+        "current_status": "STOPPED_AT",
+        "current_stop_sequence": 120,
+        "direction_id": 1,
+        "label": "3669-3856",
+        "latitude": 42.351470947265625,
+        "longitude": -71.11907196044922,
+        "speed": null,
+        "updated_at": "2019-08-12T20:22:56-04:00"
+      },
+      "id": "G-10159",
+      "links": {
+        "self": "/vehicles/G-10159"
+      },
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70138",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "ADDED-1565193518",
+            "type": "trip"
+          }
+        }
+      },
+      "type": "vehicle"
+    },
+    {
+      "attributes": {
+        "bearing": 45,
+        "current_status": "STOPPED_AT",
+        "current_stop_sequence": 100,
+        "direction_id": 1,
+        "label": "3702-3802",
+        "latitude": 42.35169982910156,
+        "longitude": -71.12529754638672,
+        "speed": null,
+        "updated_at": "2019-08-12T20:23:35-04:00"
+      },
+      "id": "G-10130",
+      "links": {
+        "self": "/vehicles/G-10130"
+      },
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70134",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "ADDED-1565193540",
+            "type": "trip"
+          }
+        }
+      },
+      "type": "vehicle"
+    }
+  ],
+  "jsonapi": {
+    "version": "1.0"
+  }
+}
