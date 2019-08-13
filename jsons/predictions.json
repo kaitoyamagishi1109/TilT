@@ -1,0 +1,366 @@
+{
+  "data": [
+    {
+      "attributes": {
+        "arrival_time": "2019-08-12T20:08:19-04:00",
+        "departure_time": "2019-08-12T20:09:00-04:00",
+        "direction_id": 0,
+        "schedule_relationship": null,
+        "status": null,
+        "stop_sequence": 160
+      },
+      "id": "prediction-40852809-20:30-NewtonHighlandsKenmore-70145-160",
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "40852809-20:30-NewtonHighlandsKenmore",
+            "type": "trip"
+          }
+        },
+        "vehicle": {
+          "data": {
+            "id": "G-10100",
+            "type": "vehicle"
+          }
+        }
+      },
+      "type": "prediction"
+    },
+    {
+      "attributes": {
+        "arrival_time": "2019-08-12T20:09:47-04:00",
+        "departure_time": "2019-08-12T20:10:28-04:00",
+        "direction_id": 0,
+        "schedule_relationship": null,
+        "status": null,
+        "stop_sequence": 160
+      },
+      "id": "prediction-40852808-20:30-NewtonHighlandsKenmore-70145-160",
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "40852808-20:30-NewtonHighlandsKenmore",
+            "type": "trip"
+          }
+        },
+        "vehicle": {
+          "data": {
+            "id": "G-10464",
+            "type": "vehicle"
+          }
+        }
+      },
+      "type": "prediction"
+    },
+    {
+      "attributes": {
+        "arrival_time": "2019-08-12T20:16:14-04:00",
+        "departure_time": "2019-08-12T20:16:55-04:00",
+        "direction_id": 0,
+        "schedule_relationship": "ADDED",
+        "status": null,
+        "stop_sequence": 160
+      },
+      "id": "prediction-ADDED-1565193523-70145-160",
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "ADDED-1565193523",
+            "type": "trip"
+          }
+        },
+        "vehicle": {
+          "data": {
+            "id": "G-10109",
+            "type": "vehicle"
+          }
+        }
+      },
+      "type": "prediction"
+    },
+    {
+      "attributes": {
+        "arrival_time": "2019-08-12T20:28:08-04:00",
+        "departure_time": "2019-08-12T20:28:49-04:00",
+        "direction_id": 0,
+        "schedule_relationship": null,
+        "status": null,
+        "stop_sequence": 160
+      },
+      "id": "prediction-40852805-20:30-NewtonHighlandsKenmore-70145-160",
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "40852805-20:30-NewtonHighlandsKenmore",
+            "type": "trip"
+          }
+        },
+        "vehicle": {
+          "data": null
+        }
+      },
+      "type": "prediction"
+    },
+    {
+      "attributes": {
+        "arrival_time": "2019-08-12T20:38:03-04:00",
+        "departure_time": "2019-08-12T20:38:44-04:00",
+        "direction_id": 0,
+        "schedule_relationship": null,
+        "status": null,
+        "stop_sequence": 160
+      },
+      "id": "prediction-40852804-20:30-NewtonHighlandsKenmore-70145-160",
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "40852804-20:30-NewtonHighlandsKenmore",
+            "type": "trip"
+          }
+        },
+        "vehicle": {
+          "data": null
+        }
+      },
+      "type": "prediction"
+    },
+    {
+      "attributes": {
+        "arrival_time": "2019-08-12T20:42:37-04:00",
+        "departure_time": "2019-08-12T20:43:18-04:00",
+        "direction_id": 0,
+        "schedule_relationship": null,
+        "status": null,
+        "stop_sequence": 160
+      },
+      "id": "prediction-40852803-20:30-NewtonHighlandsKenmore-70145-160",
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "40852803-20:30-NewtonHighlandsKenmore",
+            "type": "trip"
+          }
+        },
+        "vehicle": {
+          "data": null
+        }
+      },
+      "type": "prediction"
+    },
+    {
+      "attributes": {
+        "arrival_time": "2019-08-12T20:45:20-04:00",
+        "departure_time": "2019-08-12T20:46:01-04:00",
+        "direction_id": 0,
+        "schedule_relationship": null,
+        "status": null,
+        "stop_sequence": 160
+      },
+      "id": "prediction-40852824-20:30-NewtonHighlandsKenmore-70145-160",
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "40852824-20:30-NewtonHighlandsKenmore",
+            "type": "trip"
+          }
+        },
+        "vehicle": {
+          "data": null
+        }
+      },
+      "type": "prediction"
+    },
+    {
+      "attributes": {
+        "arrival_time": "2019-08-12T20:56:06-04:00",
+        "departure_time": "2019-08-12T20:56:47-04:00",
+        "direction_id": 0,
+        "schedule_relationship": null,
+        "status": null,
+        "stop_sequence": 160
+      },
+      "id": "prediction-40852823-20:30-NewtonHighlandsKenmore-70145-160",
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "40852823-20:30-NewtonHighlandsKenmore",
+            "type": "trip"
+          }
+        },
+        "vehicle": {
+          "data": null
+        }
+      },
+      "type": "prediction"
+    },
+    {
+      "attributes": {
+        "arrival_time": "2019-08-12T21:02:41-04:00",
+        "departure_time": "2019-08-12T21:03:22-04:00",
+        "direction_id": 0,
+        "schedule_relationship": null,
+        "status": null,
+        "stop_sequence": 160
+      },
+      "id": "prediction-40852821-20:30-NewtonHighlandsKenmore-70145-160",
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "40852821-20:30-NewtonHighlandsKenmore",
+            "type": "trip"
+          }
+        },
+        "vehicle": {
+          "data": null
+        }
+      },
+      "type": "prediction"
+    },
+    {
+      "attributes": {
+        "arrival_time": "2019-08-12T21:07:38-04:00",
+        "departure_time": "2019-08-12T21:08:19-04:00",
+        "direction_id": 0,
+        "schedule_relationship": "ADDED",
+        "status": null,
+        "stop_sequence": 160
+      },
+      "id": "prediction-ADDED-1565193541-70145-160",
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "ADDED-1565193541",
+            "type": "trip"
+          }
+        },
+        "vehicle": {
+          "data": null
+        }
+      },
+      "type": "prediction"
+    }
+  ],
+  "jsonapi": {
+    "version": "1.0"
+  }
+}
