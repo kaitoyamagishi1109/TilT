@@ -81,3 +81,92 @@
     "version": "1.0"
   }
 }
+
+#Another example
+{
+  "data": [
+    {
+      "attributes": {
+        "bearing": 315,
+        "current_status": "INCOMING_AT",
+        "current_stop_sequence": 160,
+        "direction_id": 0,
+        "label": "3625-3833",
+        "latitude": 42.34992980957031,
+        "longitude": -71.10578155517578,
+        "speed": null,
+        "updated_at": "2019-08-12T22:27:52-04:00"
+      },
+      "id": "G-10251",
+      "links": {
+        "self": "/vehicles/G-10251"
+      },
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70145",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "40852854-20:30-NewtonHighlandsKenmore",
+            "type": "trip"
+          }
+        }
+      },
+      "type": "vehicle"
+    },
+    {
+      "attributes": {
+        "bearing": 240,
+        "current_status": "STOPPED_AT",
+        "current_stop_sequence": 110,
+        "direction_id": 0,
+        "label": "3700-3875",
+        "latitude": 42.350181579589844,
+        "longitude": -71.07710266113281,
+        "speed": null,
+        "updated_at": "2019-08-12T22:27:25-04:00"
+      },
+      "id": "G-10131",
+      "links": {
+        "self": "/vehicles/G-10131"
+      },
+      "relationships": {
+        "route": {
+          "data": {
+            "id": "Green-B",
+            "type": "route"
+          }
+        },
+        "stop": {
+          "data": {
+            "id": "70155",
+            "type": "stop"
+          }
+        },
+        "trip": {
+          "data": {
+            "id": "ADDED-1565193724",
+            "type": "trip"
+          }
+        }
+      },
+      "type": "vehicle"
+    }
+  ],
+  "jsonapi": {
+    "version": "1.0"
+  }
+}
+
+IN_TRANSIT_TO
+INCOMING_AT
+STOPPED_AT

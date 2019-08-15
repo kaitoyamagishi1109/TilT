@@ -33,111 +33,96 @@ stops = {
     "Park Street" :                 {0 : 70196, 1 : 71199}
 }
 
-results = {
-    "attributes": {
-      "bearing": 135,
-      "current_status": "STOPPED_AT",
-      "current_stop_sequence": 10,
-      "direction_id": 1,
-      "label": "3663-3869",
-      "latitude": 42.339420318603516,
-      "longitude": -71.1572036743164,
-      "updated_at": "2019-08-07T21:23:40-04:00"
-    },
-    "id": "G-10092",
-    "links": {
-      "self": "/vehicles/G-10092"
-    },
-    "relationships": {
-      "route": {
-        "data": {
-          "id": "Green-B",
-          "type": "route"
-        }
-      },
-      "stop": {
-        "data": {
-          "id": "70110",
-          "type": "stop"
-        }
-      },
-      "trip": {
-        "data": {
-          "id": "ADDED-1565185569",
-          "type": "trip"
-        }
-      }
-    },
-    "type": "vehicle"
-}
-
-#Define example stopids: An array with 5 stops
-#User defined station +- 2 stations: This comes in from the frontend
-stopids = [ {0 : 70139, 1 : 70138},
-            {0 : 70143, 1 : 70142},
-            {0 : 70147, 1 : 70144},
-            {0 : 70147, 1 : 70146},
-            {0 : 70149, 1 : 70148},]
             
-def id_vehicles(stopids):
-    #Requests predictions for the next 3 trains approaching stop from PARK STREET to BC
-    predictionsPtoB = requests.get("https://api-v3.mbta.com/predictions?page%5Blimit%5D=3&sort=arrival_time&filter%5Bstop%5D=" + str(stopids[2][0])).json()
-    #equests predictions for the next 3 trains approaching stop from BC to PARK STREET
-    predictionsBtoP = requests.get("https://api-v3.mbta.com/predictions?page%5Blimit%5D=3&sort=arrival_time&filter%5Bstop%5D=" + str(stopids[2][1])).json()
+#Class definition
+class Vehicle:
+    def __init__(self, vehicle_id, direction_id, status = "", station_id = ""):
+        self.vehicle_id = vehicle_id
+        self.direction_id = direction_id
+        self.status = status
+        self.station_id = station_id
 
-    #Take the train ids for these 6, Put them in an array
+    def getstatus(self):
+        vehicledata = requests.get("https://api-v3.mbta.com/vehicles/" + self.vehicle_id).json()
+        #self.status = vehicledata["data"]["attributes"]["current_status"]
+        #self.station_id = vehicledata["data"]["stop"]["data"]["id"]
+        self.status = "INCOMING_AT"
+        self.station_id = "70145"
+        return self.status, self.station_id
+
+# def mintil(stopids):
+#     closeststa = ["70147","70146"]
+#     #Requests predictions for the next 3 trains approaching stop from PARK STREET to BC
+#     predictionsPtoB = requests.get("https://api-v3.mbta.com/predictions?page%5Blimit%5D=3&sort=arrival_time&filter%5Bstop%5D=" + closeststa[0]).json()
+#     #equests predictions for the next 3 trains approaching stop from BC to PARK STREET
+#     predictionsBtoP = requests.get("https://api-v3.mbta.com/predictions?page%5Blimit%5D=3&sort=arrival_time&filter%5Bstop%5D=" + closeststa[1]).json()
+
+#     #Calculate mins until the next train PtoB (If 0, show next)
+#     def timetilPtoB(index):
+#         #Take the arrival time of the next train from the json API response
+#         nexttrain = predictionsPtoB["data"][index]["attributes"]["arrival_time"]
+#         #Convert time to datetime type and add timezone
+#         nexttrain_datetime = datetime.strptime(nexttrain, "%Y-%m-%dT%H:%M:%S%z")
+#         timenow = datetime.now(timezone("US/Eastern"))
+#         #Get deltatime value by subtracting current time from arrival time
+#         mintilarrival = ((abs(nexttrain_datetime-timenow).total_seconds())/60)
+#         roundedmin = round(mintilarrival)
+#         #If the train is coming in less than a minute, take arriving time of next train
+#         if roundedmin == 0:
+#             #via recursion, incrementing the index of the json API response
+#             roundedmin = timetilPtoB(index+1)
+#         return roundedmin
+
+#     #Calculate mins until the next train BtoP (If 0, show next)
+#     def timetilBtoP(index):
+#         #Take the arrival time of the next train from the json API response
+#         nexttrain = predictionsBtoP["data"][index]["attributes"]["arrival_time"]
+#         #Convert time to datetime type and add timezone
+#         nexttrain_datetime = datetime.strptime(nexttrain, "%Y-%m-%dT%H:%M:%S%z")
+#         timenow = datetime.now(timezone("US/Eastern"))
+#         #Get deltatime value by subtracting current time from arrival time
+#         mintilarrival = ((abs(nexttrain_datetime-timenow).total_seconds())/60)
+#         roundedmin = round(mintilarrival)
+#         #If the train is coming in less than a minute, take arriving time of next train
+#         if roundedmin == 0:
+#             #via recursion, incrementing the index of the json API response
+#             roundedmin = timetilBtoP(index+1)
+#         return roundedmin
+
+#     #return trainids and the minutes until next train
+#     mins = [timetilPtoB(0),timetilBtoP(0)]
+#     return mins
 
 
+def main():
+    trains = []
+    closeststa = ["70147","70146"]
+    vehiclesPtoB = requests.get("https://api-v3.mbta.com/predictions?page%5Blimit%5D=3&sort=arrival_time&filter%5Bstop%5D=" + closeststa[0]).json()
+    for i in range(3):
+        #vehicle_id = vehiclesPtoB["data"][i]["vehicle"]["id"]
+        #direction_id = vehiclesPtoB["data"][i]["attributes"]["direciton_id"]
+        vehicle_id = "G-10251"
+        direction_id = 0
+        strName = "toBC"+str(i)
+        strName = Vehicle(vehicle_id, direction_id)
+        trains.append(strName)
+        strName.getstatus()
+        trains.append(strName)
 
-    #Calculate mins until the next train PtoB (If 0, show next)
-    def timetilPtoB(index):
-        #Take the arrival time of the next train from the json API response
-        nexttrain = predictionsPtoB["data"][index]["attributes"]["arrival_time"]
-        #Convert time to datetime type and add timezone
-        nexttrain_datetime = datetime.strptime(nexttrain, "%Y-%m-%dT%H:%M:%S%z")
-        timenow = datetime.now(timezone("US/Eastern"))
-        #Get deltatime value by subtracting current time from arrival time
-        mintilarrival = ((abs(nexttrain_datetime-timenow).total_seconds())/60)
-        roundedmin = round(mintilarrival)
-        #If the train is coming in less than a minute, take arriving time of next train
-        if roundedmin == 0:
-            #via recursion, incrementing the index of the json API response
-            roundedmin = timetilPtoB(index+1)
-        return roundedmin
+    vehiclesBtoP = requests.get("https://api-v3.mbta.com/predictions?page%5Blimit%5D=3&sort=arrival_time&filter%5Bstop%5D=" + closeststa[1]).json()
+    for j in range(3):
+        #vehicle_id = vehiclesBtoP["data"][i]["vehicle"]["id"]
+        #direction_id = vehiclesBtoP["data"][i]["attributes"]["direciton_id"]
+        vehicle_id = "G-10252"
+        direction_id = 1
+        strName = "toPS"+str(j+3)
+        strName = Vehicle(vehicle_id, direction_id)
+        strName.getstatus()
+        trains.append(strName)
 
-    #Calculate mins until the next train BtoP (If 0, show next)
-    def timetilBtoP(index):
-        #Take the arrival time of the next train from the json API response
-        nexttrain = predictionsBtoP["data"][index]["attributes"]["arrival_time"]
-        #Convert time to datetime type and add timezone
-        nexttrain_datetime = datetime.strptime(nexttrain, "%Y-%m-%dT%H:%M:%S%z")
-        timenow = datetime.now(timezone("US/Eastern"))
-        #Get deltatime value by subtracting current time from arrival time
-        mintilarrival = ((abs(nexttrain_datetime-timenow).total_seconds())/60)
-        roundedmin = round(mintilarrival)
-        #If the train is coming in less than a minute, take arriving time of next train
-        if roundedmin == 0:
-            #via recursion, incrementing the index of the json API response
-            roundedmin = timetilBtoP(index+1)
-        return roundedmin
-
-    #return trainids and the minutes until next train
-    roundedmin = [timetilPtoB(0),timetilBtoP(0)]
-    return 0, roundedmin
-
-
-def status_vehicles(trainids):
-    #initialize return element (the dict)
-    trainstatus = {}
-    #attach for loop here (to iterate through train IDs)
-    vehicles = requests.get("https://api-v3.mbta.com/vehicles/" + trainids[i])
-    vehiclestatus = (results["attributes"]["current_status"])
-    stopid = (results["relationships"]["stop"]["data"]["id"])
-    trainstatus.update({vehiclestatus:int(stopid)})
-    return trainstatus
 
 if __name__ == '__main__':
-        trainids, mins = id_vehicles(stopids)
-        print("Next train heading East towards Boston College is arriving in %d minutes."%mins[0])
-        print("Next train heading West towards Park Steet is arriving in %d minutes."%mins[1])
-        #trainstatus = status_vehicles(trainids)
+        # mins = mintil(stopids)
+        # print("Next train heading East towards Boston College is arriving in %d minutes."%mins[0])
+        # print("Next train heading West towards Park Steet is arriving in %d minutes."%mins[1])
+        main()
