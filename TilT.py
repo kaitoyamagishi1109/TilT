@@ -73,12 +73,12 @@ class Vehicles:
         self.direction_id = direction_id
         self.timetil = timetil
         self.vehicle_id = vehicle_id
-        #under this comment are attributes registered from the oher API response
+        #under this comment are attributes added to the object from the oher API response
         # self.current_status = current_status
         # self.stop = stop
 
 #API call
-predictions = requests.get("https://api-v3.mbta.com/predictions?sort=arrival_time&filter%5Bstop%5D=70121%2C70120").json()
+predictions = requests.get("https://api-v3.mbta.com/predictions?sort=arrival_time&filter%5Bstop%5D=70113%2C70112").json()
 
 #Iterate through response from predictions API until 2 vehicles for each direction is recieved
 while (len(myVehicles) < 4):
@@ -113,7 +113,7 @@ for j in myVehicles:
 vehicleslist = vehicleslist[:-3]
 
 #call vehicles API to fetch vehicle data
-vehiclesdata = requests.get("https://api-v3.mbta.com/vehicles?sort=direction_id&filter%5Bid%5D=" + vehicleslist).json()
+vehiclesdata = requests.get("https://api-v3.mbta.com/vehicles?filter%5Bid%5D=" + vehicleslist).json()
 for m in (vehiclesdata["data"]):
     #register attributes current_status and stop
     myVehicles[index].current_status = m["attributes"]["current_status"]
