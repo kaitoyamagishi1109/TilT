@@ -21,6 +21,7 @@ stops = {
     "Packards Corner" :             {0 : 70135, 1 : 70134},
     "Babcock Street" :              {0 : 70137, 1 : 70136},
     "Pleasant Street" :             {0 : 70139, 1 : 70138},
+    "Saint Paul Street" :           {0 : 00000, 1 : 00000},
     "Boston University West" :      {0 : 70143, 1 : 70142},
     "Boston University Central" :   {0 : 70145, 1 : 70144},
     "Boston University East" :      {0 : 70147, 1 : 70146},
