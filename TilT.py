@@ -1,10 +1,10 @@
 #imports
 import requests
-from datetime import datetime
-from pytz import timezone
+from datetime import datetime, timedelta, timezone
 
 #variable initializations
-timenow = datetime.now(timezone("US/Eastern"))
+US_Eastern = timezone(timedelta(hours=-4), 'US/Eastern')
+timenow = datetime.now(US_Eastern)
 #list of vehicle objects
 myVehicles = []
 #dict containing all stop ids for stop names
