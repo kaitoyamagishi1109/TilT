@@ -1,3 +1,4 @@
+#imports
 import json
 import requests
 import logging
@@ -8,9 +9,6 @@ from datetime import datetime, timedelta, timezone
 #variable initializations
 US_Eastern = timezone(timedelta(hours=-4), 'US/Eastern')
 timenow = datetime.now(US_Eastern)
-#list of vehicle objects
-myVehicles = []
-vehicles_string = []
 #dict containing all stop ids for stop names
 stops = {
     #direction_id = 0, headed to boston college
@@ -75,10 +73,17 @@ class Vehicles:
         self.current_status = current_status
         self.stop = stop
 
+#first function: recieves station ID, returns array of Vehicles with direction ID, minutes til arrival, and vehicle ID
 def findVehicles(event,context):
-    predictions = event["queryStringParameters"]
+    userstops = event["path"]
+    userstops = userstops[1:]
+    predictions = requests.get("https://api-v3.mbta.com/predictions?sort=arrival_time&filter%5Bstop%5D=" + userstops).json()
+    myVehicles = []
     toBC = 0
     toPS = 0
+    if not predictions["data"]:
+        print("Vehicle Data is Empty")
+        return False
     while (len(myVehicles) < 4):
         for i in (predictions["data"]):
             #if direction is 0 (to BC), vehicle data is present and there is less than 2 vehicle data for this direction
@@ -106,7 +111,7 @@ def findVehicles(event,context):
                 datetime2 = datetime.strptime(timetil2, "%Y-%m-%dT%H:%M:%S-04:00")
                 et_datetime2 = datetime2.replace(tzinfo=US_Eastern)
                 mintilarrival2 = round((et_datetime2-timenow).total_seconds()/60)
-                print("\nVehicle without an ID is arriving in " + str(mintilarrival2) + " minutes.\n")
+                print("Vehicle without an ID is arriving in " + str(mintilarrival2) + " minutes.\n")
             #safety catch (usually gets trapped here since train is missing vehicle ID)
             else:
                 break
@@ -115,6 +120,8 @@ def findVehicles(event,context):
     
     return myVehicles
     
+#second function: recieves list of vehicles, passes their vehicle ID to second API to recieve current status and station theyre
+#approaching towards
 def findStatus(myVehicles):
     #string of vehicle ids to pass to api
     vehicleslist = ""
@@ -122,7 +129,6 @@ def findStatus(myVehicles):
     #Iterate through the vehicle object list and concatinate vehicle name, now ready to pass to the API
     for i in myVehicles:
         vehicleslist += (i.vehicle_id+"%2C")
-    vehicleslist = vehicleslist[:-3]
 
     #call vehicles API to fetch vehicle data
     vehiclesdata = requests.get("https://api-v3.mbta.com/vehicles?filter%5Bid%5D=" + vehicleslist).json()
@@ -132,16 +138,26 @@ def findStatus(myVehicles):
         stopid = j["relationships"]["stop"]["data"]["id"]
         myVehicles[index].stop = stops[stopid]
         index += 1
+    return myVehicles
 
 def lambda_handler(event, context):
-    myVehicles = findVehicles(event, context)
-    findStatus(myVehicles)
+    #initialize response from the function
+    VehiclesJson = []
+    #if there is any vehicle present(first function returns true)
+    if findVehicles(event, context):
+        myVehicles = findVehicles(event, context)
+        #call second function
+        VehiclesInfo = findStatus(myVehicles)
+        #append response from 2 functions to the new list (convert objects to list of json)
+        for i in VehiclesInfo:
+            VehiclesJson.append(json.dumps(i.__dict__))
+    else:
+        VehiclesJson = "False"
     
-    
-    x = json.dumps(event)
+    #return default lines and list of approaching vehicles as body(json)
     return {
         "isBase64Encoded": "true",
         "statusCode": 200,
         "headers": {},
-        "body": x
+        "body": VehiclesJson
     }

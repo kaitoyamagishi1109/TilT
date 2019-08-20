@@ -79,6 +79,8 @@ def findVehicles():
     #API call
     predictions = requests.get("https://api-v3.mbta.com/predictions?sort=arrival_time&filter%5Bstop%5D=70147%2C70146").json()
     #Iterate through response from predictions API until 2 vehicles for each direction is recieved
+    if not predictions["data"]:
+        return False
     while (len(myVehicles) < 4):
         for i in (predictions["data"]):
             #if direction is 0 (to BC), vehicle data is present and there is less than 2 vehicle data for this direction
@@ -109,6 +111,7 @@ def findVehicles():
                 break
         #if the whole API response gets iterated but doesn't reach 4 vehicles, break
         break
+    return myVehicles
 
 def findStatus():
     #string of vehicle ids to pass to api
@@ -139,6 +142,7 @@ def main():
         print()
 
 if __name__ == '__main__':
-    findVehicles()
+    myVehicles = findVehicles()
+    if 
     findStatus()
     main()
