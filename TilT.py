@@ -77,7 +77,7 @@ def findVehicles():
     toBC = 0
     toPS = 0
     #API call
-    predictions = requests.get("https://api-v3.mbta.com/predictions?sort=arrival_time&filter%5Bstop%5D=70113%2C70112").json()
+    predictions = requests.get("https://api-v3.mbta.com/predictions?sort=arrival_time&filter%5Bstop%5D=70147%2C70146").json()
     #Iterate through response from predictions API until 2 vehicles for each direction is recieved
     while (len(myVehicles) < 4):
         for i in (predictions["data"]):
@@ -99,6 +99,11 @@ def findVehicles():
                 #Create a new object with the direction id, minutes until arrival and the vehicle id
                 myVehicles.append(Vehicles(1,mintilarrival1,i["relationships"]["vehicle"]["data"]["id"]))
                 toPS += 1
+            elif (i["relationships"]["vehicle"]["data"] == None):
+                timetil2 = i["attributes"]["arrival_time"]
+                datetime2 = datetime.strptime(timetil2, "%Y-%m-%dT%H:%M:%S%z")
+                mintilarrival2 = round((datetime2-timenow).total_seconds()/60)
+                print("\nVehicle without an ID is arriving in " + mintilarrival2 + " minutes.\n")
             #safety catch (usually gets trapped here since train is missing vehicle ID)
             else:
                 break
@@ -131,6 +136,7 @@ def main():
         print("ID is " + i.vehicle_id)
         print("Vehicle is " + i.current_status)
         print(i.stop)
+        print()
 
 if __name__ == '__main__':
     findVehicles()
