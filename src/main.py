@@ -22,9 +22,11 @@ class Vehicles:
 
 #first function: recieves station ID, returns array of Vehicles with direction ID, minutes til arrival, and vehicle ID
 def findVehicles(event,context):
+    #get rid of header slash
+    path = event["path"][1:]
     #fetch station IDs from lambda API call path
-    userstops = event["path"]
-    userstops = userstops[1:]
+    path = path.split('/')
+    userstops = path[2] + "%2C" + path[3]
     #call MBTA API using the path
     predictions = requests.get("https://api-v3.mbta.com/predictions?sort=arrival_time&filter%5Bstop%5D=" + userstops).json()
     myVehicles = []
@@ -95,28 +97,34 @@ def findStatus(myVehicles):
 def lambda_handler(event, context):
     #initialize response from the whole function
     VehiclesJson = []
+    #get rid of header slash
+    path = event["path"][1:]
+    #fetch station IDs from lambda API call path
+    stops = path.split('/')
     #if there is any vehicle present(first function returns true)
     if event["path"] == "/":
         VehiclesJson = "Path not provided."
     else:
         myVehicles = findVehicles(event, context)
         if not myVehicles:
-            VehiclesJson = "No Vehicles Data"
+            VehiclesString = "No Vehicles Data"
         else:
             #call second function
             VehiclesInfo = findStatus(myVehicles)
             #append response from 2 functions to the new list (convert objects to list of json)
             for i in VehiclesInfo:
-                VehiclesJson.append(json.dumps(i.__dict__))
+                if i.stop in stops:
+                    VehiclesJson.append(json.dumps(i.__dict__))
             #IMPORTANT: lambda did not allow lists to be returned in body: make it single string with new lines in between
-            VehiclesString = '\n'.join(VehiclesJson)
+            VehiclesString = '!'.join(VehiclesJson)
     
     #return default lines and list of approaching vehicles as body(json)
     return {
         "isBase64Encoded": "true",
         "statusCode": 200,
         "headers": {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
         },
         "body": VehiclesString
     }
