@@ -9,59 +9,6 @@ from datetime import datetime, timedelta, timezone
 #variable initializations
 US_Eastern = timezone(timedelta(hours=-4), 'US/Eastern')
 timenow = datetime.now(US_Eastern)
-#dict containing all stop ids for stop names
-stops = {
-    #direction_id = 0, headed to boston college
-    "70107" : "Boston College",
-    "70111" : "South Street",
-    "70113" : "Chestnut Hill Avenue",
-    "70115" : "Chiswick Road",
-    "70117" : "Sutherland Road",
-    "70121" : "Washington Street",
-    "70125" : "Warren Street",
-    "70127" : "Allston Street",
-    "70129" : "Griggs Street",
-    "70131" : "Harvard Avenue",
-    "70135" : "Packards Corner",
-    "70137" : "Babcock Street",
-    "70139" : "Pleasant Street",
-    "70141" : "Saint Paul Street",
-    "70143" : "Boston University West",
-    "70145" : "Boston University Central",
-    "70147" : "Boston University East",
-    "70149" : "Blandford Street",
-    "71151" : "Kenmore",
-    "70153" : "Hynes Convention Center",
-    "70155" : "Copley",
-    "70157" : "Arlington",
-    "70159" : "Boylston",
-    "70196" : "Park Street",
-    #direction_id = 1, headed to park street
-    "70106" : "Boston College",
-    "70110" : "South Street",
-    "70112" : "Chestnut Hill Avenue",
-    "70114" : "Chiswick Road",
-    "70116" : "Sutherland Road",
-    "70120" : "Washington Street",
-    "70124" : "Warren Street",
-    "70126" : "Allston Street",
-    "70128" : "Griggs Street",
-    "70130" : "Harvard Avenue",
-    "70134" : "Packards Corner",
-    "70136" : "Babcock Street",
-    "70138" : "Pleasant Street",
-    "70140" : "Saint Paul Street",
-    "70142" : "Boston University West",
-    "70144" : "Boston University Central",
-    "70146" : "Boston University East",
-    "70148" : "Blandford Street",
-    "70150" : "Kenmore",
-    "70152" : "Hynes Convention Center",
-    "70154" : "Copley",
-    "70156" : "Arlington",
-    "70158" : "Boylston",
-    "70199" : "Park Street"
-}
 
 #class initialization
 class Vehicles:
@@ -75,15 +22,19 @@ class Vehicles:
 
 #first function: recieves station ID, returns array of Vehicles with direction ID, minutes til arrival, and vehicle ID
 def findVehicles(event,context):
+    #fetch station IDs from lambda API call path
     userstops = event["path"]
     userstops = userstops[1:]
+    #call MBTA API using the path
     predictions = requests.get("https://api-v3.mbta.com/predictions?sort=arrival_time&filter%5Bstop%5D=" + userstops).json()
     myVehicles = []
+    #counts of vehicles heading in each direction
     toBC = 0
     toPS = 0
+    #if whatever happens and API fails to recieve 
     if not predictions["data"]:
-        print("Vehicle Data is Empty")
         return False
+    #we fetch a maximum of 4 vehicles in the list
     while (len(myVehicles) < 4):
         for i in (predictions["data"]):
             #if direction is 0 (to BC), vehicle data is present and there is less than 2 vehicle data for this direction
@@ -106,11 +57,13 @@ def findVehicles(event,context):
                 #Create a new object with the direction id, minutes until arrival and the vehicle id
                 myVehicles.append(Vehicles(1,mintilarrival1,i["relationships"]["vehicle"]["data"]["id"]))
                 toPS += 1
+            #if there is no vehicles id
             elif (i["relationships"]["vehicle"]["data"] == None):
                 timetil2 = i["attributes"]["arrival_time"]
                 datetime2 = datetime.strptime(timetil2, "%Y-%m-%dT%H:%M:%S-04:00")
                 et_datetime2 = datetime2.replace(tzinfo=US_Eastern)
                 mintilarrival2 = round((et_datetime2-timenow).total_seconds()/60)
+                #print minutes til arrival for reference
                 print("Vehicle without an ID is arriving in " + str(mintilarrival2) + " minutes.\n")
             #safety catch (usually gets trapped here since train is missing vehicle ID)
             else:
@@ -135,29 +88,35 @@ def findStatus(myVehicles):
     for j in (vehiclesdata["data"]):
         #register attributes current_status and stop
         myVehicles[index].current_status = j["attributes"]["current_status"]
-        stopid = j["relationships"]["stop"]["data"]["id"]
-        myVehicles[index].stop = stops[stopid]
+        myVehicles[index].stop = j["relationships"]["stop"]["data"]["id"]
         index += 1
     return myVehicles
 
 def lambda_handler(event, context):
-    #initialize response from the function
+    #initialize response from the whole function
     VehiclesJson = []
     #if there is any vehicle present(first function returns true)
-    if findVehicles(event, context):
-        myVehicles = findVehicles(event, context)
-        #call second function
-        VehiclesInfo = findStatus(myVehicles)
-        #append response from 2 functions to the new list (convert objects to list of json)
-        for i in VehiclesInfo:
-            VehiclesJson.append(json.dumps(i.__dict__))
+    if event["path"] == "/":
+        VehiclesJson = "Path not provided."
     else:
-        VehiclesJson = "False"
+        myVehicles = findVehicles(event, context)
+        if not myVehicles:
+            VehiclesJson = "No Vehicles Data"
+        else:
+            #call second function
+            VehiclesInfo = findStatus(myVehicles)
+            #append response from 2 functions to the new list (convert objects to list of json)
+            for i in VehiclesInfo:
+                VehiclesJson.append(json.dumps(i.__dict__))
+            #IMPORTANT: lambda did not allow lists to be returned in body: make it single string with new lines in between
+            VehiclesString = '\n'.join(VehiclesJson)
     
     #return default lines and list of approaching vehicles as body(json)
     return {
         "isBase64Encoded": "true",
         "statusCode": 200,
-        "headers": {},
-        "body": VehiclesJson
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": VehiclesString
     }
