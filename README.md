@@ -1,4 +1,4 @@
-Copyright 2019, Kaito Yamagishi, all rights reserved
+Copyright 2019, Kaito Yamagishi, all rights reserved<br/>
 Special thanks to Satoshi Nagakubo, Takao Kawano and Mitsuhiro Hayakata for AWS/terraform integration
 
 ## TilT Documentation
