@@ -71,14 +71,14 @@ resource "aws_s3_bucket_object" "file_upload5" {
   key    = "train_east.png"
   content_type = "image/png"
   source = "../html/train_east.png"
-  etag = "${md5(file("../html/train-east.png"))}"
+  etag = "${md5(file("../html/train_east.png"))}"
 }
 resource "aws_s3_bucket_object" "file_upload6" {
   bucket = "${aws_s3_bucket.b1.id}"
   key    = "train_west.png"
   content_type = "image/png"
   source = "../html/train_west.png"
-  etag = "${md5(file("../html/train-west.png"))}"
+  etag = "${md5(file("../html/train_west.png"))}"
 }
 resource "aws_s3_bucket_object" "file_upload7" {
   bucket = "${aws_s3_bucket.b1.id}"
