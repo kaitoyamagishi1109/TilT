@@ -18,13 +18,13 @@ Copyright 2019, Kaito Yamagishi, all rights reserved
 
 #### **Solution (Test Checklist)**
 
-- [ ] An web page/application that provides a simple, intuitive view of the T's current location
-- [ ] Start from Green Line B, might develop for more lines
-- [ ] Users select a stop to view the station and its surrounding stations/trains
-- [ ] Show +- 2 stops from the selected stop: map trains
+- [x] An web page/application that provides a simple, intuitive view of the T's current location
+- [x] Start from Green Line B, might develop for more lines
+- [x] Users select a stop to view the station and its surrounding stations/trains
+- [x] Show +- 2 stops from the selected stop: map trains
 - [ ] Live updates on browser using ReactJS (or a similar platform)
 - [ ] If no train is present on the scope of 2 stops, show minutes until next train (Same case for terminals)
-- [ ] Flat design
+- [x] Flat design
 
 #### **Specifics and Other Information**
 
