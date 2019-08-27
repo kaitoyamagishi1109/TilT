@@ -4,7 +4,7 @@ Copyright 2019, Kaito Yamagishi, all rights reserved
 
 #### **Problem Statement**
 
-- Currently no smartphone/web application(s) support live mapping for the MBTA in a simple and intuitive manner
+- Currently no smartphone/web application(s) support live mapping for the MBTA(a.k.a the T, Massachusetts Bay Transportation Authority) in a simple and intuitive manner
 
 > I have used both of these services myself, and have great respect towards the developer of these applications. Just wanted to make something new that didn't exist that fits my preferences, not neccesairly better.
 
@@ -29,7 +29,9 @@ Copyright 2019, Kaito Yamagishi, all rights reserved
 #### **Specifics and Other Information**
 
 - Script will be written in Python, will get data from the MBTA V3 API
-- Frontend will consist of simple HTML with elements of ReactJS for real time refreshing
+- Frontend will consist of simple HTML, CSS and JavaScript.
+- Will dispatch using AWS Lambda, API Gateway, Terraform, and Docker.
+- Vehicles will be stored in a object with attributes direction ID, vehicle ID, time until arrival, and current status.
 
 #### **UI Brainstorm**
 
