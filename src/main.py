@@ -43,14 +43,9 @@ def findVehicles(event,context):
             if ((i["attributes"]["direction_id"] == 0) and (i["relationships"]["vehicle"]["data"] != None) and (toBC < 2)):
                 #block of code to get the time until the next vehicle
                 timetil0 = i["attributes"]["arrival_time"]
-                print(timetil0)
                 datetime0 = datetime.strptime(timetil0, "%Y-%m-%dT%H:%M:%S-04:00")
-                print(datetime0)
                 et_datetime0 = datetime0.replace(tzinfo=US_Eastern)
-                print(et_datetime0)
-                print(timenow)
                 mintilarrival0 = round((abs(et_datetime0-timenow).total_seconds())/60)
-                print(mintilarrival0)
                 #Create a new object with the direction id, minutes until arrival and the vehicle id
                 myVehicles.append(Vehicles(0,mintilarrival0,i["relationships"]["vehicle"]["data"]["id"]))
                 toBC += 1
@@ -58,14 +53,9 @@ def findVehicles(event,context):
             elif ((i["attributes"]["direction_id"] == 1) and (i["relationships"]["vehicle"]["data"] != None) and (toPS < 2)):
                 #block of code to get the time until the next vehicle
                 timetil1 = i["attributes"]["arrival_time"]
-                print(timetil1)
                 datetime1 = datetime.strptime(timetil1, "%Y-%m-%dT%H:%M:%S-04:00")
-                print(datetime1)
                 et_datetime1 = datetime1.replace(tzinfo=US_Eastern)
-                print(et_datetime1)
-                print(timenow)
                 mintilarrival1 = round((et_datetime1-timenow).total_seconds()/60)
-                print(mintilarrival1)
                 #Create a new object with the direction id, minutes until arrival and the vehicle id
                 myVehicles.append(Vehicles(1,mintilarrival1,i["relationships"]["vehicle"]["data"]["id"]))
                 toPS += 1
@@ -123,7 +113,6 @@ def lambda_handler(event, context):
             VehiclesInfo = findStatus(myVehicles)
             #append response from 2 functions to the new list (convert objects to list of json)
             for i in VehiclesInfo:
-                print(i.timetil)
                 VehiclesJson.append(json.dumps(i.__dict__))
             #IMPORTANT: JSON dumps the JSON dumped list of strings
             VehiclesString = json.dumps(VehiclesJson)

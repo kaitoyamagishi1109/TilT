@@ -105,7 +105,7 @@
         line-height: 1em;
         font-size: 2.5vmin;
         max-width: 25%;
-        left: 40%;
+        left: 50%;
         bottom: 25%;
     }
     .two-East{
@@ -412,6 +412,7 @@
                 axios.get('https://7d5msgvg9a.execute-api.ap-northeast-1.amazonaws.com/prod/' + passString)
                 .then(function (response) {
                     console.log(response["data"]);
+                    if (response["data"] == )
                     for (var i=0; i<response["data"].length; i++) {
                         vehicles[i] = JSON.parse(response["data"][i]);
                         if (stationIDlist.includes(vehicles[i].stop)) {
