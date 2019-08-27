@@ -43,10 +43,117 @@ resource "aws_s3_bucket_object" "file_upload1" {
   key    = "index.html"
   content_type = "text/html"
   source = "../html/index.html"
+  etag = "${filemd5("../html/index.html")}"
 }
 resource "aws_s3_bucket_object" "file_upload2" {
   bucket = "${aws_s3_bucket.b1.id}"
   key    = "error.html"
   content_type = "text/html"
   source = "../html/error.html"
+  etag = "${filemd5("../html/error.html")}"
+}
+resource "aws_s3_bucket_object" "file_upload3" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "east.png"
+  content_type = "image/png"
+  source = "../html/east.png"
+  etag = "${filemd5("../html/east.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload4" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "west.png"
+  content_type = "image/png"
+  source = "../html/west.png"
+  etag = "${filemd5("../html/west.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload5" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "train_east.png"
+  content_type = "image/png"
+  source = "../html/train_east.png"
+  etag = "${filemd5("../html/train-east.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload6" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "train_west.png"
+  content_type = "image/png"
+  source = "../html/train_west.png"
+  etag = "${filemd5("../html/train-west.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload7" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "empty.png"
+  content_type = "image/png"
+  source = "../html/empty.png"
+  etag = "${filemd5("../html/empty.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload8" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "eastbound-1.png"
+  content_type = "image/png"
+  source = "../html/eastbound-1.png"
+  etag = "${filemd5("../html/eastbound-1.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload9" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "eastbound-2.png"
+  content_type = "image/png"
+  source = "../html/eastbound-2.png"
+  etag = "${filemd5("../html/eastbound-2.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload10" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "eastbound-3.png"
+  content_type = "image/png"
+  source = "../html/eastbound-3.png"
+  etag = "${filemd5("../html/eastbound-3.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload11" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "eastbound-4.png"
+  content_type = "image/png"
+  source = "../html/eastbound-4.png"
+  etag = "${filemd5("../html/eastbound-4.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload12" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "eastbound-5.png"
+  content_type = "image/png"
+  source = "../html/eastbound-5.png"
+  etag = "${filemd5("../html/eastbound-5.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload13" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "westbound-1.png"
+  content_type = "image/png"
+  source = "../html/westbound-1.png"
+  etag = "${filemd5("../html/westbound-1.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload14" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "westbound-2.png"
+  content_type = "image/png"
+  source = "../html/westbound-2.png"
+  etag = "${filemd5("../html/westbound-2.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload15" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "westbound-3.png"
+  content_type = "image/png"
+  source = "../html/westbound-3.png"
+  etag = "${filemd5("../html/westbound-3.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload16" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "westbound-4.png"
+  content_type = "image/png"
+  source = "../html/westbound-4.png"
+  etag = "${filemd5("../html/westbound-4.png")}"
+}
+resource "aws_s3_bucket_object" "file_upload17" {
+  bucket = "${aws_s3_bucket.b1.id}"
+  key    = "westbound-5.png"
+  content_type = "image/png"
+  source = "../html/westbound-5.png"
+  etag = "${filemd5("../html/westbound-5.png")}"
 }
