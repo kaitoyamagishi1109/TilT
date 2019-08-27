@@ -1,5 +1,515 @@
+<!DOCTYPE html>
 <html>
-<body>
-Hellow World.
-</body>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<style>
+    body {}
+
+    h1 {
+        color: #424242;
+        text-align: center;
+        font-family: "Helvetica Neue";
+        font-size: 50px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 100;
+        line-height: 40px;
+    }
+
+    p {
+        color: #424242;
+        text-align: center;
+        font-size: 30px;
+        font-family: "Helvetica Neue";
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 200;
+        line-height: 30px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .parent{
+        /* base image */
+        position: relative;
+    }
+    .over-img-east{
+        /* overlay image of trains eastbound */
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        background: transparent;
+    }
+    .over-img-west{
+        /* overlay image of trains westbound */
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        background: transparent;
+    }
+    .selected-sta-east{
+        /* overlay text of station name */
+        position: absolute;
+        text-align: center;
+        vertical-align: top;
+        line-height: 1em;
+        font-size: 2.5vmin;
+        max-width: 25%;
+        right: 10%;
+        bottom: 25%;
+    }
+    .selected-sta-west{
+        /* overlay text of station name */
+        position: absolute;
+        text-align: center;
+        vertical-align: top;
+        line-height: 1em;
+        font-size: 2.5vmin;
+        max-width: 25%;
+        left: 5%;
+        bottom: 25%;
+    }
+    .one-West{
+        /* overlay text of station name one west of user selection */
+        position: absolute;
+        text-align: center;
+        vertical-align: top;
+        line-height: 1em;
+        font-size: 2.5vmin;
+        max-width: 25%;
+        right: 40%;
+        bottom: 25%;
+    }
+    .two-West{
+        /* overlay text of station name two west of user selection */
+        position: absolute;
+        text-align: center;
+        vertical-align: top;
+        line-height: 1em;
+        font-size: 2.5vmin;
+        max-width: 25%;
+        right: 75%;
+        bottom: 25%;
+    }
+    .one-East{
+        /* overlay text of station name one east of user selection */
+        position: absolute;
+        text-align: center;
+        vertical-align: top;
+        line-height: 1em;
+        font-size: 2.5vmin;
+        max-width: 25%;
+        left: 40%;
+        bottom: 25%;
+    }
+    .two-East{
+        /* overlay text of station name two east of user selection */
+        position: absolute;
+        text-align: center;
+        vertical-align: top;
+        line-height: 1em;
+        font-size: 2.5vmin;
+        max-width: 25%;
+        left: 75%;
+        bottom: 25%;
+    }
+    .infoeast{
+        position: absolute;
+        top: 7.5%;
+        right: 10%;
+        font-size: 3vmin;
+        font-family: "Helvetica Neue";
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 200;
+    }
+    .infowest{
+        position: absolute;
+        top: 7.5%;
+        left: 7.5%;
+        font-size: 3vmin;
+        font-family: "Helvetica Neue";
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 200;
+    }
+
+    * {
+    box-sizing: border-box;
+    }
+
+    body {
+        font: 16px Arial;  
+    }
+
+    /*the container must be positioned relative:*/
+    .autocomplete {
+        position: relative;
+        display: inline-block;
+    }
+
+    input {
+        border: 1px solid transparent;
+        background-color: #f1f1f1;
+        padding: 10px;
+        font-size: 16px;
+        font-family: "Helvetica Neue";
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 400;
+    }
+
+    input[type=text] {
+        background-color: #f1f1f1;
+        width: 100%;
+        -webkit-appearance: none;
+        border-radius: 0;
+    }
+
+    input[type=button] {
+        background-color: #016A03;
+        color: #fff;
+        cursor: pointer;
+        -webkit-appearance: none;
+        border-radius: 0;
+    }
+
+    .autocomplete-items {
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    .autocomplete-items div {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #fff; 
+        border-bottom: 1px solid #d4d4d4; 
+    }
+
+    /*when hovering an item:*/
+    .autocomplete-items div:hover {
+        background-color: #e9e9e9; 
+    }
+
+    /*when navigating through the items using the arrow keys:*/
+    .autocomplete-active {
+        background-color: #016A03 !important; 
+        color: #ffffff; 
+    }
+</style>
+</head>
+    <body>
+        <center>
+            <!--Title-->
+            <h1>'TIL T</h1>
+
+            <p>Enter Station Name:</p>
+
+            <!--Make sure the form has the autocomplete function switched off:-->
+            <form autocomplete="off" action="/action_page.php">
+            <div class="autocomplete" style="width:300px;">
+                <input id="myInput" type="text" name="myStation" placeholder="Station Name">
+            </div>
+            <input type="button" value="GO" onclick=calllambda(setStationName())>
+            </form>
+        </center>
+        <script>
+            //Auto complete function
+            function autocomplete(inp, arr) {
+            /*the autocomplete function takes two arguments,
+            the text field element and an array of possible autocompleted values:*/
+            var currentFocus;
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input", function(e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                if (!val) { return false;}
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-list");
+                a.setAttribute("class", "autocomplete-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+                    /*insert a input field that will hold the current array item's value:*/
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                    b.addEventListener("click", function(e) {
+                        /*insert the value for the autocomplete text field:*/
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                    }
+                }
+            });
+            /*execute a function presses a key on the keyboard:*/
+            inp.addEventListener("keydown", function(e) {
+                var x = document.getElementById(this.id + "autocomplete-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                    /*If the arrow DOWN key is pressed,
+                    increase the currentFocus variable:*/
+                    currentFocus++;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 38) { //up
+                    /*If the arrow UP key is pressed,
+                    decrease the currentFocus variable:*/
+                    currentFocus--;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 13) {
+                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                    e.preventDefault();
+                    if (currentFocus > -1) {
+                    /*and simulate a click on the "active" item:*/
+                    if (x) x[currentFocus].click();
+                    }
+                }
+            });
+            function addActive(x) {
+                /*a function to classify an item as "active":*/
+                if (!x) return false;
+                /*start by removing the "active" class on all items:*/
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+                /*add class "autocomplete-active":*/
+                x[currentFocus].classList.add("autocomplete-active");
+            }
+            function removeActive(x) {
+                /*a function to remove the "active" class from all autocomplete items:*/
+                for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+                }
+            }
+            function closeAllLists(elmnt) {
+                /*close all autocomplete lists in the document,
+                except the one passed as an argument:*/
+                var x = document.getElementsByClassName("autocomplete-items");
+                for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                    x[i].parentNode.removeChild(x[i]);
+                }
+                }
+            }
+            /*execute a function when someone clicks in the document:*/
+            document.addEventListener("click", function (e) {
+                closeAllLists(e.target);
+            });
+            }
+            //array containing the station names
+            var stations = [
+                "Boston College",
+                "South Street",
+                "Chestnut Hill Avenue",
+                "Chiswick Road",
+                "Sutherland Road",
+                "Washington Street",
+                "Warren Street",
+                "Allston Street",
+                "Griggs Street",
+                "Harvard Avenue",
+                "Packards Corner",
+                "Babcock Street",
+                "Pleasant Street",
+                "Saint Paul Street",
+                "Boston University West",
+                "Boston University Central",
+                "Boston University East",
+                "Blandford Street",
+                "Kenmore",
+                "Hynes Convention Center",
+                "Copley",
+                "Arlington",
+                "Boylston",
+                "Park Street"
+            ];
+            //array containing the station IDs
+            var stationIDs = [
+                /*to BC    to PS*/
+                /*BC*/["70107", "70106"],
+                ["70111", "70110"],
+                ["70113", "70112"],
+                ["70115", "70114"],
+                ["70117", "70116"],
+                ["70121", "70120"],
+                ["70125", "70124"],
+                ["70127", "70126"],
+                ["70129", "70128"],
+                ["70131", "70130"],
+                ["70135", "70134"],
+                ["70137", "70136"],
+                ["70139", "70138"],
+                ["70141", "70140"],
+                ["70143", "70142"],
+                ["70145", "70144"],
+                ["70147", "70146"],
+                ["70149", "70148"],
+                ["71151", "70150"],
+                ["70153", "70152"],
+                ["70155", "70154"],
+                ["70157", "70156"],
+                ["70159", "70158"],
+                /*PS*/["70196", "70199"]
+            ];
+            
+            autocomplete(document.getElementById("myInput"), stations);
+
+            function setStationName() {
+                var stationName = document.getElementsByName("myStation")[0].value;
+                var stationIDlist = [];
+                station_index = stations.indexOf(stationName)
+                document.getElementById("stationName1").innerHTML = stationName;
+                document.getElementById("stationName2").innerHTML = stationName;
+                document.getElementById("1West").innerHTML = stations[station_index-1];
+                document.getElementById("2West").innerHTML = stations[station_index-2];
+                document.getElementById("1East").innerHTML = stations[station_index+1];
+                document.getElementById("2East").innerHTML = stations[station_index+2];
+                stationIDlist.push(stationIDs[station_index-2][1]);
+                stationIDlist.push(stationIDs[station_index-1][1]);
+                stationIDlist.push(stationIDs[station_index][1]);
+                stationIDlist.push(stationIDs[station_index][0]);
+                stationIDlist.push(stationIDs[station_index+1][0]);
+                stationIDlist.push(stationIDs[station_index+2][0]);
+                console.log(stationIDlist);
+                var passString = stationIDlist.join('/');
+                return [stationIDlist, passString];
+            }
+
+            function calllambda([stationIDlist, passString]) {
+                var vehicles = [];
+                var EastImage = document.getElementById('EastImage');
+                var WestImage = document.getElementById('WestImage');
+                var timetil0 = 9999999;
+                var timetil1 = 9999999;
+                axios.get('https://7d5msgvg9a.execute-api.ap-northeast-1.amazonaws.com/prod/' + passString)
+                .then(function (response) {
+                    console.log(response["data"]);
+                    for (var i=0; i<response["data"].length; i++) {
+                        vehicles[i] = JSON.parse(response["data"][i]);
+                        if (stationIDlist.includes(vehicles[i].stop)) {
+                            switch(vehicles[i].stop) {
+                                case stationIDlist[0]:
+                                    if (vehicles[i].timetil < timetil1) {
+                                        if (vehicles[i].current_status == "STOPPED_AT") {
+                                            EastImage.src = "eastbound-1.png";
+                                        }
+                                    }
+                                    break;
+                                case stationIDlist[1]:
+                                    if (vehicles[i].timetil < timetil1) {
+                                        if (vehicles[i].current_status == "IN_TRANSIT_TO" || "INCOMING_AT") {
+                                            EastImage.src = "eastbound-2.png";
+                                        }
+                                        else if (vehicles[i].current_status == "STOPPED_AT") {
+                                            EastImage.src = "eastbound-3.png";
+                                        }
+                                    }
+                                    break;
+                                case stationIDlist[2]:
+                                    if (vehicles[i].timetil < timetil1) {
+                                        if (vehicles[i].current_status == "IN_TRANSIT_TO" || "INCOMING_AT") {
+                                            EastImage.src = "eastbound-4.png";
+                                        }
+                                        else if (vehicles[i].current_status == "STOPPED_AT") {
+                                            EastImage.src = "eastbound-5.png";
+                                        }
+                                    }
+                                    break;
+                                case stationIDlist[5]:
+                                    if (vehicles[i].timetil < timetil0) {
+                                        if (vehicles[i].current_status == "STOPPED_AT") {
+                                            WestImage.src = "westbound-1.png";
+                                        }
+                                    }
+                                    break;
+                                case stationIDlist[4]:
+                                    if (vehicles[i].timetil < timetil0) {
+                                        if (vehicles[i].current_status == "IN_TRANSIT_TO" || "INCOMING_AT") {
+                                            WestImage.src = "westbound-2.png";
+                                        }
+                                        else if (vehicles[i].current_status == "STOPPED_AT") {
+                                            WestImage.src = "westbound-3.png";
+                                        }
+                                    }
+                                    break;
+                                case stationIDlist[3]:
+                                    if (vehicles[i].timetil < timetil0) {
+                                        if (vehicles[i].current_status == "IN_TRANSIT_TO" || "INCOMING_AT") {
+                                            WestImage.src = "westbound-4.png";
+                                        }
+                                        else if (vehicles[i].current_status == "STOPPED_AT") {
+                                            WestImage.src = "westbound-5.png";
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    EastImage.src = "empty.png";
+                                    WestImage.src = "empty.png";
+                            }
+                        }
+                        if (vehicles[i].direction_id == 0) {
+                            if (vehicles[i].timetil < timetil0) {
+                                document.getElementById("Wmins").innerHTML = ("Next train approaching in: "+vehicles[i].timetil.toString()+" mins.");
+                                timetil0 = vehicles[i].timetil;
+                            }
+                        }
+                        else if (vehicles[i].direction_id == 1) {
+                            if (vehicles[i].timetil < timetil1) {
+                                document.getElementById("Emins").innerHTML = ("Next train approaching in: "+vehicles[i].timetil.toString()+" mins.");
+                                timetil1 = vehicles[i].timetil;
+                            }
+                        }
+                    }
+                })
+            }
+        </script>
+
+        <!--East Image background and train-->
+        <div class="parent">
+                <img src="east.png" />
+                <img src="empty.png" class="over-img-east" id="EastImage"/>
+                <div class="selected-sta-east"><span id="stationName1"></span></div>
+                <div class="one-West"><span id="1West"></span></div>
+                <div class="two-West"><span id="2West"></span></div>
+                <div class="infoeast"><span id="Emins"></span></div>
+        </div>
+
+        <!--West Image background and train-->
+        <div class="parent">
+                <img src="west.png" />
+                <img src="empty.png" class="over-img-west" id="WestImage"/>
+                <div class="selected-sta-west"><span id="stationName2"></span></div>
+                <div class="one-East"><span id="1East"></span></div>
+                <div class="two-East"><span id="2East"></span></div>
+                <div class="infowest"><span id="Wmins"></span></div>
+        </div>
+    </body>
 </html>
