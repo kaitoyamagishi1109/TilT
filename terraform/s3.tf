@@ -43,7 +43,7 @@ resource "aws_s3_bucket_object" "file_upload1" {
   key    = "index.html"
   content_type = "text/html"
   source = "../html/index.html"
-  etag = "${filemd5("../html/index.html")}"
+  etag = "${md5(file("../html/index.html"))}"
 }
 resource "aws_s3_bucket_object" "file_upload2" {
   bucket = "${aws_s3_bucket.b1.id}"
