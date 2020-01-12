@@ -24,7 +24,7 @@ Special thanks to Satoshi Nagakubo, Takao Kawano and Mitsuhiro Hayakata for AWS/
 - [x] Users select a stop to view the station and its surrounding stations/trains
 - [x] Show +- 2 stops from the selected stop: map trains
 - [ ] Live updates on browser using ReactJS (or a similar platform)
-- [ ] If no train is present on the scope of 2 stops, show minutes until next train (Same case for terminals)
+- [x] If no train is present on the scope of 2 stops, show minutes until next train (Same case for terminals)
 - [x] Flat design
 
 #### **Specifics and Other Information**
